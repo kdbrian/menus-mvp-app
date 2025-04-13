@@ -14,7 +14,7 @@ import java.util.List;
 public class MenuDto {
     private String restaurant;
     private String tagLine;
-    private Float workingHoursFrom;
-    private Float workingHoursTo;
+    private Long workingHoursFrom;
+    private Long workingHoursTo;
     private List<MenuSectionDto> menuSectionDtos;
 }

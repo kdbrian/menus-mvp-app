@@ -26,12 +26,13 @@ type Mutation {
 
     # menus
     addMenu (dto : MenuInput!) : Menu
-    addSectionToMenu (menuId : ID!, section : MenuSectionInput) : Menu
-    addMenuItemToMenuSection (menuId : ID!, sectionId : ID!, menuItemInput : MenuItemsInput) : Menu
+    updateMenu (id : ID!,dto : MenuInput!) : Menu
 
-    updateMenu (dto : MenuInput!) : Menu
+    addSectionToMenu (menuId : ID!, section : MenuSectionInput) : Menu
     updateMenuSection (menuId : ID!,sectionId : ID!, menuSectionInput : MenuSectionInput) : MenuSection
     deleteMenuSection (menuId : ID!,sectionId : ID!) : Boolean
+
+    addMenuItemToMenuSection (menuId : ID!, sectionId : ID!, menuItemInput : MenuItemsInput) : Menu
     deleteMenuItemFromSection (menuId : ID!,sectionId : ID!, itemId : ID!) : Boolean
 
 }

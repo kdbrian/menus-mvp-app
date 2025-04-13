@@ -11,5 +11,5 @@ public interface MenuService {
     List<Menu> menuByRestaurantName(String restaurantName);
     List<Menu> menuByTagLine(String tagLine);
     Menu registerMenu(MenuDto menuDto);
-    Menu updateMenu(MenuDto menuDto);
+    Menu updateMenu(String menuId,MenuDto menuDto);
 }

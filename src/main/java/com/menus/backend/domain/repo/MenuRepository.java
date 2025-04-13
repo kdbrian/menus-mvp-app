@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface MenuRepository extends MongoRepository<Menu, String> {
-    List<Menu> findBy
-
+    List<Menu> findByRestaurant_Name(String name);
+    List<Menu> findByTagLine(String tagLine);
 }
