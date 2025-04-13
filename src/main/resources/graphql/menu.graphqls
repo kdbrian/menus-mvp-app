@@ -1,0 +1,51 @@
+type Menu {
+    id: ID!
+    Restaurant : Restaurant
+    Tagline : String
+    WorkingHoursFrom : Float
+    WorkingHoursTo : Float
+    Sections : [MenuSection]
+}
+
+input MenuInput {
+    Restaurant : ID!
+    Tagline : String
+    WorkingHoursFrom : Float
+    WorkingHoursTo : Float
+    Sections : [MenuSectionInput]
+}
+
+
+type MenuSection {
+    id : ID!
+    bannerImage : String
+    Title : String
+    Description  : String
+    Items : [MenuItems]
+}
+
+input MenuSectionInput {
+    Title : String
+    Description  : String
+    Items : [MenuItemsInput]
+}
+
+
+type MenuItems {
+    Id : ID!
+    Name     :   String
+    Description :String
+    Price       :Float
+    Category    :String
+    Tags       : [String]
+    ImageURL    :String
+}
+
+input MenuItemsInput {
+    Name     :   String
+    Description :String
+    Price       :Float
+    Category    :String
+    Tags       : [String]
+    ImageURL    :String
+}

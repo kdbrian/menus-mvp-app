@@ -1,0 +1,37 @@
+type Query{
+
+    # restaurants
+    restaurants :[Restaurant]
+    restaurantById(id : ID!) :Restaurant
+    restaurantByLevel(level : Int!) :[Restaurant]
+    restaurantByZipCode(zipCode : String!) :[Restaurant]
+    restaurantByPostalCode(postalCOde : String!) :[Restaurant]
+
+
+    # menus
+    menus : [Menu]
+    menuById(id : ID!) : Menu
+    menuByRestaurantName(name  : String!) : [Menu]
+    menuByTagline(tagLine  : String!) : [Menu]
+
+
+}
+
+type Mutation {
+
+    # restaurants
+    registerRestaurant (dto : RestaurantInput!) : Restaurant
+    updateRestaurant (id : ID!,dto : RestaurantInput!) : Restaurant
+    deleteRestaurant (id : ID!) : Boolean
+
+    # menus
+    addMenu (dto : MenuInput!) : Menu
+    addSectionToMenu (menuId : ID!, section : MenuSectionInput) : Menu
+    addMenuItemToMenuSection (menuId : ID!, sectionId : ID!, menuItemInput : MenuItemsInput) : Menu
+
+    updateMenu (dto : MenuInput!) : Menu
+    updateMenuSection (menuId : ID!,sectionId : ID!, menuSectionInput : MenuSectionInput) : MenuSection
+    deleteMenuSection (menuId : ID!,sectionId : ID!) : Boolean
+    deleteMenuItemFromSection (menuId : ID!,sectionId : ID!, itemId : ID!) : Boolean
+
+}
