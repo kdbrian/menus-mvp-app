@@ -20,16 +20,21 @@ public class MenuSection {
 
     @Id
     private String id;
-
     private String title;
     private String description;
+    private String bannerImage;
 
     @DBRef
     private List<MenuItem> menuItems;
 
-    void addMenuItem(MenuItem menuItem) {
+    public void addMenuItem(MenuItem menuItem) {
         if (this.menuItems == null)
             this.menuItems = new ArrayList<>();
         menuItems.add(menuItem);
+    }
+    public void addMenuItems(List<MenuItem> menuItems) {
+        if (this.menuItems == null)
+            this.menuItems = new ArrayList<>();
+        this.menuItems.addAll(menuItems);
     }
 }

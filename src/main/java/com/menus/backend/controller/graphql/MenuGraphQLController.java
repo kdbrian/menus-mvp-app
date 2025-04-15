@@ -12,6 +12,7 @@ import java.util.List;
 
 @Controller
 public class MenuGraphQLController {
+
     private final MenuService menuService;
 
     public MenuGraphQLController(MenuService menuService) {
@@ -43,6 +44,12 @@ public class MenuGraphQLController {
         return menuService.menuByTagLine(tagLine);
     }
 
+    // Query: menuByName(name : String!) : [Menu]
+    @QueryMapping
+    public List<Menu> menuByName(@Argument String name) {
+        return menuService.menuByName(name);
+    }
+
     // Mutation: addMenu(dto : MenuInput!) : Menu
     @MutationMapping
     public Menu addMenu(@Argument MenuDto dto) {
@@ -53,6 +60,13 @@ public class MenuGraphQLController {
     @MutationMapping
     public Menu updateMenu(@Argument String id,@Argument MenuDto dto) {
         return menuService.updateMenu(id,dto);
+    }
+
+
+    // Query: menuByRestaurant(id : ID!) : Menu
+    @QueryMapping
+    public List<Menu> menuByRestaurant(@Argument String id) {
+        return menuService.menuByRestaurant(id);
     }
 
 

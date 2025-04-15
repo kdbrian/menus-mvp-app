@@ -13,7 +13,9 @@ import java.util.List;
 @Builder
 public class MenuDto {
     private String restaurant;
+    private String name;
     private String tagLine;
+    private String bannerImage;
     private Long workingHoursFrom;
     private Long workingHoursTo;
     private List<MenuSectionDto> menuSectionDtos;

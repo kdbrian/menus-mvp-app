@@ -11,6 +11,7 @@ import com.menus.backend.domain.repo.RestaurantRepository;
 import com.menus.backend.service.MenuService;
 import com.menus.backend.util.EntityDtoMapper;
 import com.menus.backend.util.mappers.MenuDtoMapper;
+import com.menus.backend.util.mappers.MenuSectionDtoMapper;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +24,15 @@ public class MenuServiceImpl implements MenuService {
     private final MenuRepository menuRepository;
     private final MenuSectionRepository menuSectionRepository;
 
-    private final EntityDtoMapper<Menu, MenuDto> menuDtoMapper;
-    private final EntityDtoMapper<MenuSection, MenuSectionDto> menuSectionDtoEntityDtoMapper;
+    private final MenuDtoMapper menuDtoMapper;
+    private final MenuSectionDtoMapper menuSectionDtoEntityDtoMapper;
     private final RestaurantRepository restaurantRepository;
 
-    public MenuServiceImpl(MenuRepository menuRepository, MenuSectionRepository menuSectionRepository, EntityDtoMapper<Menu, MenuDto> menuDtoMapper, EntityDtoMapper<MenuSection, MenuSectionDto> menuSectionDtoEntityDtoMapper, RestaurantRepository restaurantRepository) {
+    public MenuServiceImpl(MenuRepository menuRepository,
+                           MenuSectionRepository menuSectionRepository,
+                           MenuDtoMapper menuDtoMapper,
+                           MenuSectionDtoMapper menuSectionDtoEntityDtoMapper,
+                           RestaurantRepository restaurantRepository) {
         this.menuRepository = menuRepository;
         this.menuSectionRepository = menuSectionRepository;
         this.menuDtoMapper = menuDtoMapper;
@@ -49,6 +54,12 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
+    public List<Menu> menuByRestaurant(String id) {
+        var restaurant = restaurantRepository.findById(id).orElseThrow();
+        return menuRepository.findAll().stream().filter(menu -> menu.getRestaurant().equals(restaurant)).toList();
+    }
+    
+    @Override
     public List<Menu> menuByRestaurantName(String restaurantName) {
         return menuRepository.findByRestaurant_Name(restaurantName);
     }
@@ -56,6 +67,11 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public List<Menu> menuByTagLine(String tagLine) {
         return menuRepository.findByTagLine(tagLine);
+    }
+
+    @Override
+    public List<Menu> menuByName(String name) {
+        return menuRepository.findByName(name);
     }
 
     @Override
@@ -67,7 +83,7 @@ public class MenuServiceImpl implements MenuService {
         menu.setRestaurant(restaurant);
 
 
-        if (!menuDto.getMenuSectionDtos().isEmpty()){
+        if (menuDto.getMenuSectionDtos() != null && !menuDto.getMenuSectionDtos().isEmpty()) {
             List<MenuSection> menuSections = menuDto.getMenuSectionDtos()
                     .stream()
                     .map(menuSectionDtoEntityDtoMapper::fromDto)
@@ -83,7 +99,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Menu updateMenu(String menuId,MenuDto menuDto) {
+    public Menu updateMenu(String menuId, MenuDto menuDto) {
         if (!menuRepository.existsById(menuId) || !ObjectId.isValid(menuId))
             throw new RuntimeException("Invalid menu Id");
 
@@ -91,6 +107,9 @@ public class MenuServiceImpl implements MenuService {
 
         if (menuDto.getWorkingHoursFrom() != null)
             toUpdate.setWorkingHoursFrom(menuDto.getWorkingHoursFrom());
+
+        if (menuDto.getName() != null)
+            toUpdate.setName(menuDto.getName());
 
         if (menuDto.getWorkingHoursTo() != null)
             toUpdate.setWorkingHoursTo(menuDto.getWorkingHoursTo());

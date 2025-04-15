@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Document
@@ -23,7 +24,9 @@ public class Menu {
     @DBRef
     private Restaurant restaurant;
 
+    private String name;
     private String tagLine;
+    private String bannerImage;
     private Long workingHoursFrom;
     private Long workingHoursTo;
     private Long createdAt;
@@ -31,5 +34,13 @@ public class Menu {
 
     @DBRef
     private List<MenuSection> menuSections;
+
+
+    public void addSection(MenuSection menuSection) {
+        if (this.getMenuSections() == null)
+            this.setMenuSections(new ArrayList<>());
+
+        this.getMenuSections().add(menuSection);
+    }
 
 }

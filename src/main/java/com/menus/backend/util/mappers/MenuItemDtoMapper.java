@@ -3,7 +3,9 @@ package com.menus.backend.util.mappers;
 import com.menus.backend.domain.dto.MenuItemDto;
 import com.menus.backend.domain.model.MenuItem;
 import com.menus.backend.util.EntityDtoMapper;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MenuItemDtoMapper extends EntityDtoMapper<MenuItem, MenuItemDto> {
 
     @Override

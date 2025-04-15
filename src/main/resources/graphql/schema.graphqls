@@ -11,9 +11,14 @@ type Query{
     # menus
     menus : [Menu]
     menuById(id : ID!) : Menu
+    menuByRestaurant(id  : ID!) : [Menu]
     menuByRestaurantName(name  : String!) : [Menu]
     menuByTagline(tagLine  : String!) : [Menu]
+    menuByName(name  : String!) : [Menu]
 
+    sectionsMenu : [MenuSection]
+    sectionsById(id : ID!) : MenuSection
+    sectionsByMenuId(menuId : ID!) : [MenuSection]
 
 }
 
@@ -28,9 +33,9 @@ type Mutation {
     addMenu (dto : MenuInput!) : Menu
     updateMenu (id : ID!,dto : MenuInput!) : Menu
 
-    addSectionToMenu (menuId : ID!, section : MenuSectionInput) : Menu
-    updateMenuSection (menuId : ID!,sectionId : ID!, menuSectionInput : MenuSectionInput) : MenuSection
-    deleteMenuSection (menuId : ID!,sectionId : ID!) : Boolean
+    addSectionToMenu (menuId : ID!, section : MenuSectionInput) : MenuSection
+    updateMenuSection (sectionId : ID!, menuSectionInput : MenuSectionInput) : MenuSection
+    deleteMenuSection (sectionId : ID!) : Boolean
 
     addMenuItemToMenuSection (menuId : ID!, sectionId : ID!, menuItemInput : MenuItemsInput) : Menu
     deleteMenuItemFromSection (menuId : ID!,sectionId : ID!, itemId : ID!) : Boolean
