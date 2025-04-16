@@ -40,8 +40,8 @@ public class RestaurantsGraphController {
     }
 
     @QueryMapping
-    public List<Restaurant> restaurantByPostalCode(@Argument String postalCOde) {
-        return restaurantService.restaurantsByPostalCode(postalCOde);
+    public List<Restaurant> restaurantByPostalCode(@Argument String postalCode) {
+        return restaurantService.restaurantsByPostalCode(postalCode);
     }
 
     @MutationMapping

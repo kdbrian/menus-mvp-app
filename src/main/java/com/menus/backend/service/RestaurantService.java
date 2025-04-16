@@ -8,6 +8,7 @@ import java.util.List;
 public interface RestaurantService {
     List<Restaurant> restaurants();
 
+    List<Restaurant> restaurantsByName(String name);
     Restaurant restaurantsById(String id);
 
     List<Restaurant> restaurantsByLevel(int level);

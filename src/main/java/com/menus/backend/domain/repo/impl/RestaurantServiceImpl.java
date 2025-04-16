@@ -5,7 +5,6 @@ import com.menus.backend.domain.model.Restaurant;
 import com.menus.backend.domain.repo.RestaurantRepository;
 import com.menus.backend.service.RestaurantService;
 import com.menus.backend.util.EntityDtoMapper;
-import com.menus.backend.util.mappers.RestaurantMapper;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +24,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public List<Restaurant> restaurants() {
         return restaurantRepository.findAll();
+    }
+
+    @Override
+    public List<Restaurant> restaurantsByName(String name) {
+        return restaurantRepository.findByNameContainingIgnoringCase(name);
     }
 
     @Override

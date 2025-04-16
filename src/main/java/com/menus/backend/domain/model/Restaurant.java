@@ -20,7 +20,9 @@ public class Restaurant {
 
     @Indexed(unique = true)
     private String name;
-    private int level;
+
+    //TODO: Add validation 0-5
+    private int level; // not that important
     private float lat;
     private float lng;
     private String zipCode;

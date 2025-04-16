@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface RestaurantRepository extends MongoRepository<Restaurant, String> {
+    List<Restaurant> findByNameContainingIgnoringCase(String name);
     List<Restaurant> findByLevel(int level);
     List<Restaurant> findByZipCode(String zipCode);
     List<Restaurant> findByPostalCode(String postalCode);

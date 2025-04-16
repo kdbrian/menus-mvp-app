@@ -2,10 +2,11 @@ type Query{
 
     # restaurants
     restaurants :[Restaurant]
+    restaurantByName(name : String!) :[Restaurant]
     restaurantById(id : ID!) :Restaurant
     restaurantByLevel(level : Int!) :[Restaurant]
     restaurantByZipCode(zipCode : String!) :[Restaurant]
-    restaurantByPostalCode(postalCOde : String!) :[Restaurant]
+    restaurantByPostalCode(postalCode : String!) :[Restaurant]
 
 
     # menus
