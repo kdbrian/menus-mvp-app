@@ -1,19 +1,19 @@
 
 type Restaurant {
     id :ID!
-    Name : String
-    Level : Int
-    Lng : Float
-    Lat : Float
-    ZipCode : String
-    PostalCode : String
+    name : String
+    level : Int
+    lng : Float
+    lat : Float
+    zipCode : String
+    postalCode : String
 }
 
 input RestaurantInput {
-    Name : String
-    Level : Int
-    Lng : Float
-    Lat : Float
-    ZipCode : String
-    PostalCode : String
+    name : String
+    level : Int
+    lng : Float
+    lat : Float
+    zipCode : String
+    postalCode : String
 }

@@ -20,6 +20,14 @@ type Query{
     sectionsById(id : ID!) : MenuSection
     sectionsByMenuId(menuId : ID!) : [MenuSection]
 
+    menuItems : [MenuItems]
+    menuItemById(id : ID!): MenuItems
+    menuItemsFromSections(sectionId : ID!) : [MenuItems]
+    menuItemsByName(name : String!) : [MenuItems]
+    menuItemsByDescription(description : String!) : [MenuItems]
+    menuItemsByCategories(categories : [String!]) : [MenuItems]
+    menuItemsByTags(tags : [String!]) : [MenuItems]
+    menuItemsByPriceRange(from : Float, to : Float) : [MenuItems]
 }
 
 type Mutation {
@@ -33,11 +41,14 @@ type Mutation {
     addMenu (dto : MenuInput!) : Menu
     updateMenu (id : ID!,dto : MenuInput!) : Menu
 
+    # menu section
     addSectionToMenu (menuId : ID!, section : MenuSectionInput) : MenuSection
     updateMenuSection (sectionId : ID!, menuSectionInput : MenuSectionInput) : MenuSection
     deleteMenuSection (sectionId : ID!) : Boolean
 
-    addMenuItemToMenuSection (menuId : ID!, sectionId : ID!, menuItemInput : MenuItemsInput) : Menu
-    deleteMenuItemFromSection (menuId : ID!,sectionId : ID!, itemId : ID!) : Boolean
+    # menu item
+    addMenuItemToMenuSection (sectionId : ID!, menuItemInput : MenuItemsInput) : MenuItems
+    updateMenuItem(itemId : ID!, menuItemInput : MenuItemsInput) : MenuItems
+    deleteMenuItemFromSection (itemId : ID!) : Boolean
 
 }

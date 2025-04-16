@@ -17,6 +17,7 @@ public class MenuItemDtoMapper extends EntityDtoMapper<MenuItem, MenuItemDto> {
                 .description(menuItemDto.getDescription())
                 .imageUrl(menuItemDto.getImageUrl())
                 .price(menuItemDto.getPrice())
+                .meta(menuItemDto.getMeta())
                 .build();
     }
 
@@ -29,6 +30,7 @@ public class MenuItemDtoMapper extends EntityDtoMapper<MenuItem, MenuItemDto> {
                 .imageUrl(menuItem.getImageUrl())
                 .price(menuItem.getPrice())
                 .name(menuItem.getName())
+                .meta(menuItem.getMeta())
                 .build();
     }
 

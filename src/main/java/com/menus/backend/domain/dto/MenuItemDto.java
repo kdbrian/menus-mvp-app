@@ -5,7 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -14,8 +16,10 @@ import java.util.List;
 public class MenuItemDto {
     private String name;
     private String description;
-    private Float price;
+    private Double price;
     private List<String> category;
     private List<String> tags;
     private String imageUrl;
+    @Builder.Default
+    private Map<String, Object> meta = new HashMap<>();
 }
