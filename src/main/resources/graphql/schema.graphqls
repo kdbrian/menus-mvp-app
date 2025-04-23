@@ -29,6 +29,14 @@ type Query{
     menuItemsByCategories(categories : [String!]) : [MenuItems]
     menuItemsByTags(tags : [String!]) : [MenuItems]
     menuItemsByPriceRange(from : Float, to : Float) : [MenuItems]
+
+    # users
+    all : [User]
+    withEmail(email : String!) : [User]
+    withPhone(phone : String!) : [User]
+    withName(name : String!) : [User]
+    profile(id : ID!) : User
+    createdBetween(start:Float, end : Float) : [User]
 }
 
 type Mutation {
@@ -52,4 +60,7 @@ type Mutation {
     updateMenuItem(itemId : ID!, menuItemInput : MenuItemsInput) : MenuItems
     deleteMenuItemFromSection (itemId : ID!) : Boolean
 
+    #users
+    create(dto : UserDto!) : User
+    delete(uid:ID!) : Boolean
 }

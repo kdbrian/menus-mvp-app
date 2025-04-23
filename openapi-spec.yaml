@@ -1,0 +1,9 @@
+servers:
+  localhost:
+    path: http://localhost:6969/
+  graphql:
+    path: http://localhost:6969/graph
+
+path:
+  '/graph':
+    post:

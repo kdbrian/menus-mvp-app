@@ -87,9 +87,9 @@ public class MenuSectionServiceImpl implements MenuSectionService {
             section.setDescription(menuSectionDto.getDescription());
         }
 
-        if (menuSectionDto.getBannerImage() != null && ImageUrlValidator.isValidImageUrl(menuSectionDto.getBannerImage())) {
+//        if (menuSectionDto.getBannerImage() != null && ImageUrlValidator.isValidImageUrl(menuSectionDto.getBannerImage())) {
             section.setBannerImage(menuSectionDto.getBannerImage());
-        }
+//        }
 
         return menuSectionRepository.save(section);
     }
