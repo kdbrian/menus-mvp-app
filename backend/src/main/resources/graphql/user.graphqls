@@ -1,0 +1,14 @@
+type User {
+    uid : ID!
+    name : String
+    email : String
+    phone : String
+    dateJoined : Float
+    dateUpdated : Float
+}
+
+input UserDto {
+    name : String
+    email : String
+    phone : String
+}

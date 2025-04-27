@@ -1,0 +1,39 @@
+fragment RestaurantInfo on Restaurant {
+    id
+    name
+    level
+    postalCode
+    zipCode
+}
+
+query FetchRestaurants {
+    restaurants {
+        ...RestaurantInfo
+    }
+}
+
+query FetchRestaurantById($id : ID!){
+    restaurantById(id: $id){
+        ...RestaurantInfo
+    }
+}
+
+
+query FetchRestaurantByLevel($level : Int!){
+    restaurantByLevel(level: $level){
+        ...RestaurantInfo
+    }
+}
+
+
+query FetchRestaurantByZipCode($zipCode : String!){
+    restaurantByZipCode(zipCode: $zipCode){
+        ...RestaurantInfo
+    }
+}
+
+query FetchRestaurantByPostalCode($postalCode : String!){
+    restaurantByPostalCode(postalCode: $postalCode){
+        ...RestaurantInfo
+    }
+}

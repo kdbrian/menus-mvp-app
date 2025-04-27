@@ -1,0 +1,23 @@
+fragment MenuInfo on Menu{
+    id
+    name
+    restaurant {
+        id
+        name
+    }
+    tagLine
+    workingHoursFrom
+    workingHoursTo
+}
+
+query GetAllMenus {
+    menus {
+        ...MenuInfo
+    }
+}
+
+query GetMenuById($id : ID!){
+    menuById(id: $id){
+        ...MenuInfo
+    }
+}

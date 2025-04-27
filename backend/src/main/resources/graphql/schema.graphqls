@@ -1,0 +1,66 @@
+type Query{
+
+    # restaurants
+    restaurants :[Restaurant]
+    restaurantByName(name : String!) :[Restaurant]
+    restaurantById(id : ID!) :Restaurant
+    restaurantByLevel(level : Int!) :[Restaurant]
+    restaurantByZipCode(zipCode : String!) :[Restaurant]
+    restaurantByPostalCode(postalCode : String!) :[Restaurant]
+
+
+    # menus
+    menus : [Menu]
+    menuById(id : ID!) : Menu
+    menuByRestaurant(id  : ID!) : [Menu]
+    menuByRestaurantName(name  : String!) : [Menu]
+    menuByTagline(tagLine  : String!) : [Menu]
+    menuByName(name  : String!) : [Menu]
+
+    sectionsMenu : [MenuSection]
+    sectionsById(id : ID!) : MenuSection
+    sectionsByMenuId(menuId : ID!) : [MenuSection]
+
+    menuItems : [MenuItems]
+    menuItemById(id : ID!): MenuItems
+    menuItemsFromSections(sectionId : ID!) : [MenuItems]
+    menuItemsByName(name : String!) : [MenuItems]
+    menuItemsByDescription(description : String!) : [MenuItems]
+    menuItemsByCategories(categories : [String!]) : [MenuItems]
+    menuItemsByTags(tags : [String!]) : [MenuItems]
+    menuItemsByPriceRange(from : Float, to : Float) : [MenuItems]
+
+    # users
+    allUsers : [User]
+    usersWithEmail(email : String!) : [User]
+    usersWithPhone(phone : String!) : [User]
+    usersWithName(name : String!) : [User]
+    userProfile(id : ID!) : User
+    usersCreatedBetween(start:Float, end : Float) : [User]
+}
+
+type Mutation {
+
+    # restaurants
+    registerRestaurant (dto : RestaurantInput!) : Restaurant
+    updateRestaurant (id : ID!,dto : RestaurantInput!) : Restaurant
+    deleteRestaurant (id : ID!) : Boolean
+
+    # menus
+    addMenu (dto : MenuInput!) : Menu
+    updateMenu (id : ID!,dto : MenuInput!) : Menu
+
+    # menu section
+    addSectionToMenu (menuId : ID!, section : MenuSectionInput) : MenuSection
+    updateMenuSection (sectionId : ID!, menuSectionInput : MenuSectionInput) : MenuSection
+    deleteMenuSection (sectionId : ID!) : Boolean
+
+    # menu item
+    addMenuItemToMenuSection (sectionId : ID!, menuItemInput : MenuItemsInput) : MenuItems
+    updateMenuItem(itemId : ID!, menuItemInput : MenuItemsInput) : MenuItems
+    deleteMenuItemFromSection (itemId : ID!) : Boolean
+
+    #users
+    create(dto : UserDto!) : User
+    delete(uid:ID!) : Boolean
+}

@@ -1,0 +1,19 @@
+
+type Restaurant {
+    id :ID!
+    name : String
+    level : Int
+    lng : Float
+    lat : Float
+    zipCode : String
+    postalCode : String
+}
+
+input RestaurantInput {
+    name : String
+    level : Int
+    lng : Float
+    lat : Float
+    zipCode : String
+    postalCode : String
+}
