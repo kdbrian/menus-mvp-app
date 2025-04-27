@@ -31,12 +31,12 @@ type Query{
     menuItemsByPriceRange(from : Float, to : Float) : [MenuItems]
 
     # users
-    all : [User]
-    withEmail(email : String!) : [User]
-    withPhone(phone : String!) : [User]
-    withName(name : String!) : [User]
-    profile(id : ID!) : User
-    createdBetween(start:Float, end : Float) : [User]
+    allUsers : [User]
+    usersWithEmail(email : String!) : [User]
+    usersWithPhone(phone : String!) : [User]
+    usersWithName(name : String!) : [User]
+    userProfile(id : ID!) : User
+    usersCreatedBetween(start:Float, end : Float) : [User]
 }
 
 type Mutation {

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.HashMap;
@@ -19,7 +20,13 @@ public class AppUser {
 
     @Id
     private String uid;
-    private String name, email, phone;
+    private String name;
+
+    @Indexed(unique = true)
+    private String email;
+
+    private String phone;
+
     Map<String, Object> meta = new HashMap<>();
 
     @Builder.Default

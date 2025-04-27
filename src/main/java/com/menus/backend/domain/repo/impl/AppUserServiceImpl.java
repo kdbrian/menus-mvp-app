@@ -33,7 +33,7 @@ public class AppUserServiceImpl implements AppUserService {
         var user = userDtoEntityDtoMapper.fromDto(appUserDto);
         user.setDateJoined(System.currentTimeMillis());
         AppUser saved = userRepository.save(user);
-        log.info("user {}", user);
+//        log.info("user {}", user);
         return saved;
     }
 
