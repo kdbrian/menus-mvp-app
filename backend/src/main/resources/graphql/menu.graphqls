@@ -1,9 +1,9 @@
-
 type Menu {
     id: ID!
     restaurant : Restaurant
     name : String
     tagLine : String
+    bannerImage : String
     workingHoursFrom : Float
     workingHoursTo : Float
     menuSections : [MenuSection]
@@ -13,6 +13,7 @@ input MenuInput {
     restaurant : ID!
     Name : String
     tagLine : String
+    bannerImage : String
     workingHoursFrom : Float
     workingHoursTo : Float
     sections : [MenuSectionInput]

@@ -31,12 +31,12 @@ type Query{
     menuItemsByPriceRange(from : Float, to : Float) : [MenuItems]
 
     # users
-    allUsers : [User]
-    usersWithEmail(email : String!) : User
-    usersWithPhone(phone : String!) : [User]
-    usersWithName(name : String!) : [User]
-    userProfile(id : ID!) : User
-    usersCreatedBetween(start:Float, end : Float) : [User]
+#    allUsers : [User]
+#    usersWithEmail(email : String!) : User
+#    usersWithPhone(phone : String!) : [User]
+#    usersWithName(name : String!) : [User]
+#    userProfile(id : ID!) : User
+#    usersCreatedBetween(start:Float, end : Float) : [User]
 }
 
 type Mutation {
@@ -61,6 +61,6 @@ type Mutation {
     deleteMenuItemFromSection (itemId : ID!) : Boolean
 
     #users
-    create(dto : UserDto!) : User
-    delete(uid:ID!) : Boolean
+#    create(dto : UserDto!) : User
+#    delete(uid:ID!) : Boolean
 }
