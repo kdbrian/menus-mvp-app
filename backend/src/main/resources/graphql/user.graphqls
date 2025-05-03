@@ -3,6 +3,7 @@ type User {
     name : String
     email : String
     phone : String
+    password : String
     dateJoined : Float
     dateUpdated : Float
 }
@@ -11,4 +12,5 @@ input UserDto {
     name : String
     email : String
     phone : String
+    password : String
 }

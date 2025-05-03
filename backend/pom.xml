@@ -27,6 +27,7 @@
         <url/>
     </scm>
     <properties>
+        <jjwt-api.version>0.12.6</jjwt-api.version>
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -68,31 +69,11 @@
             <artifactId>graphql-java-extended-scalars</artifactId>
             <version>21.0</version>
         </dependency>
-
-
+        
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-
-
-        <!-- https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
-        <dependency>
-            <groupId>jakarta.validation</groupId>
-            <artifactId>jakarta.validation-api</artifactId>
-            <version>3.0.2</version>
-        </dependency>
-
-	<dependency>
-    <groupId>org.hibernate.validator</groupId>
-    <artifactId>hibernate-validator</artifactId>
-    <version>8.0.0.Final</version> <!-- Use the latest version -->
-</dependency>
-<dependency>
-    <groupId>jakarta.el</groupId>
-    <artifactId>jakarta.el-api</artifactId>
-    <version>5.0.0</version> <!-- Add this for EL support -->
-</dependency>
 
     </dependencies>
 

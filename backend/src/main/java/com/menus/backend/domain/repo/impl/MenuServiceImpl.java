@@ -1,7 +1,6 @@
 package com.menus.backend.domain.repo.impl;
 
 import com.menus.backend.domain.dto.MenuDto;
-import com.menus.backend.domain.dto.MenuSectionDto;
 import com.menus.backend.domain.model.Menu;
 import com.menus.backend.domain.model.MenuSection;
 import com.menus.backend.domain.model.Restaurant;
@@ -9,13 +8,11 @@ import com.menus.backend.domain.repo.MenuRepository;
 import com.menus.backend.domain.repo.MenuSectionRepository;
 import com.menus.backend.domain.repo.RestaurantRepository;
 import com.menus.backend.service.MenuService;
-import com.menus.backend.util.EntityDtoMapper;
 import com.menus.backend.util.mappers.MenuDtoMapper;
 import com.menus.backend.util.mappers.MenuSectionDtoMapper;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

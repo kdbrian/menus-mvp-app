@@ -1,7 +1,6 @@
 package com.menus.backend.domain.repo.impl;
 
 import com.menus.backend.domain.dto.MenuItemDto;
-import com.menus.backend.domain.model.Menu;
 import com.menus.backend.domain.model.MenuItem;
 import com.menus.backend.domain.repo.MenuItemRepository;
 import com.menus.backend.domain.repo.MenuSectionRepository;

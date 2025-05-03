@@ -32,7 +32,7 @@ type Query{
 
     # users
     allUsers : [User]
-    usersWithEmail(email : String!) : [User]
+    usersWithEmail(email : String!) : User
     usersWithPhone(phone : String!) : [User]
     usersWithName(name : String!) : [User]
     userProfile(id : ID!) : User

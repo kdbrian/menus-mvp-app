@@ -1,17 +1,14 @@
 package com.menus.backend.controller.graphql;
 
 import com.menus.backend.domain.dto.MenuItemDto;
-import com.menus.backend.domain.model.Menu;
 import com.menus.backend.domain.model.MenuItem;
 import com.menus.backend.service.MenuItemService;
 import com.menus.backend.service.MenuSectionService;
-import com.menus.backend.util.EntityDtoMapper;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -19,12 +16,10 @@ public class MenuItemGraphController {
 
     private final MenuItemService menuItemService;
     private final MenuSectionService menuSectionService;
-    private final EntityDtoMapper<MenuItem, MenuItemDto> menuItemDtoEntityDtoMapper;
 
-    public MenuItemGraphController(MenuItemService menuItemService, MenuSectionService menuSectionService, EntityDtoMapper<MenuItem, MenuItemDto> menuItemDtoEntityDtoMapper) {
+    public MenuItemGraphController(MenuItemService menuItemService, MenuSectionService menuSectionService) {
         this.menuItemService = menuItemService;
         this.menuSectionService = menuSectionService;
-        this.menuItemDtoEntityDtoMapper = menuItemDtoEntityDtoMapper;
     }
 
     @MutationMapping

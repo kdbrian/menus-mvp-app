@@ -1,6 +1,5 @@
 package com.menus.backend.domain.repo;
 
-import com.menus.backend.domain.model.Menu;
 import com.menus.backend.domain.model.MenuItem;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;

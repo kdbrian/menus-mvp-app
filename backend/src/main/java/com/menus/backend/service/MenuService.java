@@ -2,7 +2,6 @@ package com.menus.backend.service;
 
 import com.menus.backend.domain.dto.MenuDto;
 import com.menus.backend.domain.model.Menu;
-import com.menus.backend.domain.model.Restaurant;
 
 import java.util.List;
 

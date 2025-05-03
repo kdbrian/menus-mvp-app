@@ -9,9 +9,7 @@ import com.menus.backend.domain.repo.MenuRepository;
 import com.menus.backend.domain.repo.MenuSectionRepository;
 import com.menus.backend.service.MenuSectionService;
 import com.menus.backend.util.EntityDtoMapper;
-import com.menus.backend.util.ImageUrlValidator;
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

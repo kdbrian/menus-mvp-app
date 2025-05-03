@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class Application {
 
     @Bean
-    public RuntimeWiring.Builder configureWiring(){
+    public RuntimeWiring.Builder configureWiring() {
         return RuntimeWiring.newRuntimeWiring()
                 .scalar(ExtendedScalars.Json);
     }

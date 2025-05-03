@@ -20,9 +20,6 @@ public class Reservation {
     @Id
     private String reserveId;
 
-    @DBRef
-    private AppUser appUser;
-
     private Long dateCreated;
 
     private Long dateUpdated;
