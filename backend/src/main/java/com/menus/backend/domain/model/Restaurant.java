@@ -21,6 +21,8 @@ public class Restaurant {
     @Indexed(unique = true)
     private String name;
 
+    private String bannerImage;
+
     //TODO: Add validation 0-5
     private int level; // not that important
     private float lat;
@@ -29,5 +31,10 @@ public class Restaurant {
     private String postalCode;
     private Long createdAt;
     private Long updatedAt;
+    @Builder.Default
+    private Long thumbsUp = 0L;
+
+    @Builder.Default
+    private Long thumbsDown = 0L;
     private transient boolean is_verified;
 }

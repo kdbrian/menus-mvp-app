@@ -4,6 +4,18 @@ fragment RestaurantInfo on Restaurant {
     level
     postalCode
     zipCode
+    bannerImage
+}
+
+fragment RestaurantInfoDetailed on Restaurant {
+    id
+    name
+    level
+    postalCode
+    zipCode
+    thumbsUp
+    thumbsDown
+    bannerImage
 }
 
 query FetchRestaurants {
@@ -14,7 +26,7 @@ query FetchRestaurants {
 
 query FetchRestaurantById($id : ID!){
     restaurantById(id: $id){
-        ...RestaurantInfo
+        ...RestaurantInfoDetailed
     }
 }
 
@@ -25,6 +37,14 @@ query FetchRestaurantByLevel($level : Int!){
     }
 }
 
+
+mutation ThumbUpRestaurant($id : ID!){
+    thumbUpRestaurant(restaurantId: $id)
+}
+
+mutation ThumbDownRestaurant($id : ID!){
+    thumbDownRestaurant(restaurantId: $id)
+}
 
 query FetchRestaurantByZipCode($zipCode : String!){
     restaurantByZipCode(zipCode: $zipCode){

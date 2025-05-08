@@ -9,12 +9,17 @@ import com.menus.backend.domain.repo.MenuRepository;
 import com.menus.backend.domain.repo.MenuSectionRepository;
 import com.menus.backend.service.MenuSectionService;
 import com.menus.backend.util.EntityDtoMapper;
+import com.menus.backend.util.ImageUrlValidator;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class MenuSectionServiceImpl implements MenuSectionService {
 
     private final MenuSectionRepository menuSectionRepository;
@@ -22,14 +27,6 @@ public class MenuSectionServiceImpl implements MenuSectionService {
     private final MenuItemRepository menuItemRepository;
     private final EntityDtoMapper<MenuSection, MenuSectionDto> menuSectionDtoEntityDtoMapper;
     private final EntityDtoMapper<MenuItem, MenuItemDto> menuItemDtoEntityDtoMapper;
-
-    public MenuSectionServiceImpl(MenuSectionRepository menuSectionRepository, MenuRepository menuRepository, MenuItemRepository menuItemRepository, EntityDtoMapper<MenuSection, MenuSectionDto> menuSectionDtoEntityDtoMapper, EntityDtoMapper<MenuItem, MenuItemDto> menuItemDtoEntityDtoMapper) {
-        this.menuSectionRepository = menuSectionRepository;
-        this.menuRepository = menuRepository;
-        this.menuItemRepository = menuItemRepository;
-        this.menuSectionDtoEntityDtoMapper = menuSectionDtoEntityDtoMapper;
-        this.menuItemDtoEntityDtoMapper = menuItemDtoEntityDtoMapper;
-    }
 
     @Override
     public List<MenuSection> sectionsMenu() {
@@ -85,9 +82,10 @@ public class MenuSectionServiceImpl implements MenuSectionService {
             section.setDescription(menuSectionDto.getDescription());
         }
 
-//        if (menuSectionDto.getBannerImage() != null && ImageUrlValidator.isValidImageUrl(menuSectionDto.getBannerImage())) {
+        log.info("matches {} {}", ImageUrlValidator.isValidImageUrl(menuSectionDto.getBannerImage()), menuSectionDto.getBannerImage());
+        if (menuSectionDto.getBannerImage() != null) {
             section.setBannerImage(menuSectionDto.getBannerImage());
-//        }
+        }
 
         return menuSectionRepository.save(section);
     }

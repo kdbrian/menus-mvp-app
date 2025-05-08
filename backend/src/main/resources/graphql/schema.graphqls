@@ -45,9 +45,13 @@ type Mutation {
     registerRestaurant (dto : RestaurantInput!) : Restaurant
     updateRestaurant (id : ID!,dto : RestaurantInput!) : Restaurant
     deleteRestaurant (id : ID!) : Boolean
+    thumbUpRestaurant (restaurantId:ID!) : Boolean
+    thumbDownRestaurant (restaurantId:ID!) : Boolean
 
     # menus
     addMenu (dto : MenuInput!) : Menu
+    thumbUpMenu (menuId:ID!) : Boolean
+    thumbDownMenu (menuId:ID!) : Boolean
     updateMenu (id : ID!,dto : MenuInput!) : Menu
 
     # menu section

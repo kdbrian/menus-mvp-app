@@ -21,6 +21,10 @@ spring:
     enabled: true
     path: /graph
 
+  web:
+    resources:
+      static-locations: file:uploads/
+
 validation:
   regex:
     imageUrl: "^(https?://[^\\s]+/[^\\s]+\\.(?i)(jpg|jpeg|png|gif|bmp|webp))$"

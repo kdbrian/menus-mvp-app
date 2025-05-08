@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class RestaurantDto {
     private String name;
+    private String bannerImage;
     private int level;
     private float lat;
     private float lng;

@@ -9,6 +9,10 @@ import src.main.graphql.FetchRestaurantByPostalCodeQuery
 import src.main.graphql.FetchRestaurantByZipCodeQuery
 import src.main.graphql.FetchRestaurantsQuery
 import src.main.graphql.GetAllMenusQuery
+import src.main.graphql.ThumbDownRestaurantMutation
+import src.main.graphql.ThumbUpRestaurantMutation
+import src.main.graphql.ThumbsDownMenuMutation
+import src.main.graphql.ThumbsUpMenuMutation
 
 class RestaurantRepositoryImpl : RestaurantRepository {
 
@@ -88,6 +92,36 @@ class RestaurantRepositoryImpl : RestaurantRepository {
                 }
             }
 
+    }
+
+    override suspend fun thumbUpRestaurant(restaurantId: String): Result<ThumbUpRestaurantMutation.Data> {
+        return apolloClient.mutation(ThumbUpRestaurantMutation(restaurantId)).execute()
+            .let { apolloResponse ->
+                if (apolloResponse.errors?.isNotEmpty() == true) {
+                    Result.failure(Exception(apolloResponse.exception?.message.toString()))
+                } else {
+                    apolloResponse.data?.let {
+                        Result.success(it)
+                    } ?: run {
+                        Result.failure(Exception(apolloResponse.exception?.message.toString()))
+                    }
+                }
+            }
+    }
+
+    override suspend fun thumbDownRestaurant(restaurantId: String): Result<ThumbDownRestaurantMutation.Data> {
+        return apolloClient.mutation(ThumbDownRestaurantMutation(restaurantId)).execute()
+            .let { apolloResponse ->
+                if (apolloResponse.errors?.isNotEmpty() == true) {
+                    Result.failure(Exception(apolloResponse.exception?.message.toString()))
+                } else {
+                    apolloResponse.data?.let {
+                        Result.success(it)
+                    } ?: run {
+                        Result.failure(Exception(apolloResponse.exception?.message.toString()))
+                    }
+                }
+            }
     }
 
 }

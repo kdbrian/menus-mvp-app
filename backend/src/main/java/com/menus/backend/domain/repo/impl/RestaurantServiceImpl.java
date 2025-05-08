@@ -1,10 +1,12 @@
 package com.menus.backend.domain.repo.impl;
 
 import com.menus.backend.domain.dto.RestaurantDto;
+import com.menus.backend.domain.model.Menu;
 import com.menus.backend.domain.model.Restaurant;
 import com.menus.backend.domain.repo.RestaurantRepository;
 import com.menus.backend.service.RestaurantService;
 import com.menus.backend.util.EntityDtoMapper;
+import com.menus.backend.util.errors.EntityNotFoundError;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +38,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         if (!ObjectId.isValid(id))
             throw new IllegalArgumentException("Invalid ID format");
 
-        return restaurantRepository.findById(id).orElseThrow();
+        return restaurantRepository.findById(id).orElseThrow(() -> new EntityNotFoundError(id, RestaurantService.class.getName()));
     }
 
     @Override
@@ -68,9 +70,23 @@ public class RestaurantServiceImpl implements RestaurantService {
             throw new RuntimeException("Invalid restaurant ID.");
         var restaurantToUpdate = restaurantRepository.findById(id).orElseThrow(() -> new RuntimeException("Missing restaurant with given ID."));
 
-        restaurantToUpdate.setName(dto.getName());
-        restaurantToUpdate.setZipCode(dto.getZipCode());
-        restaurantToUpdate.setPostalCode(dto.getPostalCode());
+        if (dto.getName() != null && !dto.getName().equals(restaurantToUpdate.getName()))
+            restaurantToUpdate.setName(dto.getName());
+
+        if (dto.getZipCode() != null && !dto.getZipCode().equals(restaurantToUpdate.getZipCode()))
+            restaurantToUpdate.setZipCode(dto.getZipCode());
+
+        if (dto.getPostalCode() != null && !dto.getPostalCode().equals(restaurantToUpdate.getPostalCode()))
+            restaurantToUpdate.setPostalCode(dto.getPostalCode());
+
+        if (dto.getLat() != 0.0 && dto.getLat() != (restaurantToUpdate.getLat()))
+            restaurantToUpdate.setLat(dto.getLat());
+
+        if (dto.getLng() != 0.0 && dto.getLng() != (restaurantToUpdate.getLng()))
+            restaurantToUpdate.setLng(dto.getLng());
+
+        if (dto.getBannerImage() != null && !dto.getBannerImage().equals(restaurantToUpdate.getBannerImage()))
+            restaurantToUpdate.setBannerImage(dto.getBannerImage());
 
         restaurantToUpdate.setUpdatedAt(System.currentTimeMillis());
 
@@ -82,5 +98,39 @@ public class RestaurantServiceImpl implements RestaurantService {
         var ret = restaurantRepository.existsById(id);
         restaurantRepository.deleteById(id);
         return ret;
+    }
+
+    @Override
+    public Restaurant thumbUpRestaurant(String restaurantId) {
+        if (!restaurantRepository.existsById(restaurantId) || !ObjectId.isValid(restaurantId))
+            throw new RuntimeException("Invalid menu Id");
+
+        Restaurant toUpdate = restaurantRepository.findById(restaurantId).orElseThrow();
+
+
+        Long toUpdateThumbsUp = toUpdate.getThumbsUp();
+        if (toUpdateThumbsUp != null)
+            toUpdate.setThumbsUp(toUpdateThumbsUp + 1);
+        else
+            toUpdate.setThumbsUp(1L);
+
+        return restaurantRepository.save(toUpdate);
+    }
+
+    @Override
+    public Restaurant thumbDownRestaurant(String restaurantId) {
+        if (!restaurantRepository.existsById(restaurantId) || !ObjectId.isValid(restaurantId))
+            throw new RuntimeException("Invalid restaurant Id");
+
+        Restaurant toUpdate = restaurantRepository.findById(restaurantId).orElseThrow();
+
+
+        Long toUpdateThumbsDown = toUpdate.getThumbsDown();
+        if (toUpdateThumbsDown != null)
+            toUpdate.setThumbsDown(toUpdateThumbsDown + 1);
+        else
+            toUpdate.setThumbsDown(1L);
+
+        return restaurantRepository.save(toUpdate);
     }
 }

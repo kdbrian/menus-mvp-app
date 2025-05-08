@@ -23,4 +23,8 @@ public interface RestaurantService {
 
     Boolean deleteRestaurant(String id);
 
+
+    Restaurant thumbUpRestaurant(String restaurantId);
+    Restaurant thumbDownRestaurant(String restaurantId);
+
 }

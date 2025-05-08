@@ -19,21 +19,27 @@ public class MenuDtoMapper extends EntityDtoMapper<Menu, MenuDto> {
     @Override
     public Menu fromDto(MenuDto menuDto) {
         return Menu.builder()
+                .name(menuDto.getName())
                 .tagLine(menuDto.getTagLine())
-                .workingHoursFrom(menuDto.getWorkingHoursFrom())
                 .bannerImage(ImageUrlValidator.isValidImageUrl(menuDto.getBannerImage()) ? menuDto.getBannerImage() : null)
+                .workingHoursFrom(menuDto.getWorkingHoursFrom())
                 .workingHoursTo(menuDto.getWorkingHoursTo())
+                .thumbsUp(menuDto.getThumbsUp())
+                .thumbsDown(menuDto.getThumbsDown())
                 .build();
     }
 
     @Override
     public MenuDto toDto(Menu menu) {
         return MenuDto.builder()
+                .name(menu.getName())
                 .tagLine(menu.getTagLine())
                 .workingHoursFrom(menu.getWorkingHoursFrom())
                 .workingHoursTo(menu.getWorkingHoursTo())
                 .restaurant(menu.getRestaurant().getId())
                 .menuSectionDtos(menu.getMenuSections().stream().map(menuSectionDtoMapper::toDto).toList())
+                .thumbsUp(menu.getThumbsUp())
+                .thumbsDown(menu.getThumbsDown())
                 .build();
     }
 }

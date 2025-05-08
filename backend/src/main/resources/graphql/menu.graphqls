@@ -7,6 +7,11 @@ type Menu {
     workingHoursFrom : Float
     workingHoursTo : Float
     menuSections : [MenuSection]
+
+    thumbsUp: Float
+    thumbsDown: Float
+
+
 }
 
 input MenuInput {
@@ -17,6 +22,9 @@ input MenuInput {
     workingHoursFrom : Float
     workingHoursTo : Float
     sections : [MenuSectionInput]
+
+    thumbsUp: Float
+    thumbsDown: Float
 }
 
 

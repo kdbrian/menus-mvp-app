@@ -8,6 +8,29 @@ fragment MenuInfo on Menu{
     tagLine
     workingHoursFrom
     workingHoursTo
+    bannerImage
+}
+
+
+fragment MenuInfoDetailed on Menu{
+    id
+    name
+    restaurant {
+        id
+        name
+        bannerImage
+        thumbsUp
+    }
+    tagLine
+    workingHoursFrom
+    workingHoursTo
+    bannerImage
+    thumbsUp
+    thumbsDown
+    menuSections {
+        title
+        bannerImage
+    }
 }
 
 query GetAllMenus {
@@ -18,6 +41,15 @@ query GetAllMenus {
 
 query GetMenuById($id : ID!){
     menuById(id: $id){
-        ...MenuInfo
+        ...MenuInfoDetailed
     }
+}
+
+mutation ThumbsUpMenu($id:ID!){
+    thumbUpMenu(menuId: $id)
+}
+
+
+mutation ThumbsDownMenu($id:ID!){
+    thumbDownMenu(menuId: $id)
 }

@@ -17,6 +17,7 @@ public class RestaurantMapper extends EntityDtoMapper<Restaurant, RestaurantDto>
                 .level(dto.getLevel())
                 .postalCode(dto.getPostalCode())
                 .zipCode(dto.getZipCode())
+                .bannerImage(dto.getBannerImage())
                 .build();
     }
 
@@ -30,6 +31,7 @@ public class RestaurantMapper extends EntityDtoMapper<Restaurant, RestaurantDto>
                 .zipCode(restaurant.getZipCode())
                 .postalCode(restaurant.getPostalCode())
                 .createdAt(restaurant.getCreatedAt())
+                .bannerImage(restaurant.getBannerImage())
                 .updatedAt(restaurant.getUpdatedAt())
                 .build();
     }

@@ -58,8 +58,8 @@ public class MenuGraphQLController {
 
     // Mutation: updateMenu(dto : MenuInput!) : Menu
     @MutationMapping
-    public Menu updateMenu(@Argument String id,@Argument MenuDto dto) {
-        return menuService.updateMenu(id,dto);
+    public Menu updateMenu(@Argument String id, @Argument MenuDto dto) {
+        return menuService.updateMenu(id, dto);
     }
 
 
@@ -67,6 +67,17 @@ public class MenuGraphQLController {
     @QueryMapping
     public List<Menu> menuByRestaurant(@Argument String id) {
         return menuService.menuByRestaurant(id);
+    }
+
+
+    @MutationMapping
+    public Boolean thumbUpMenu(@Argument String menuId) {
+        return menuService.thumbUp(menuId) != null;
+    }
+
+    @MutationMapping
+    public Boolean thumbDownMenu(@Argument String menuId) {
+        return menuService.thumbDown(menuId) != null;
     }
 
 

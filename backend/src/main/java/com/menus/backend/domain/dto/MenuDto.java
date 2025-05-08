@@ -19,4 +19,10 @@ public class MenuDto {
     private Long workingHoursFrom;
     private Long workingHoursTo;
     private List<MenuSectionDto> menuSectionDtos;
+
+    // extra for more sauce
+    private Long thumbsUp;
+    transient private Long thumbsDown;
+
+
 }

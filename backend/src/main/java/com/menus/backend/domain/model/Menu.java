@@ -32,6 +32,10 @@ public class Menu {
     private Long createdAt;
     private Long updatedAt;
 
+    // extra for more sauce
+    private Long thumbsUp;
+    transient private Long thumbsDown;
+
     @DBRef
     private List<MenuSection> menuSections;
 

@@ -14,4 +14,6 @@ public interface MenuService {
     List<Menu> menuByName(String name);
     Menu registerMenu(MenuDto menuDto);
     Menu updateMenu(String menuId,MenuDto menuDto);
+    Menu thumbUp(String menuId);
+    Menu thumbDown(String menuId);
 }

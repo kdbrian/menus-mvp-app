@@ -110,7 +110,7 @@ apollo {
     service("menus-service") {
         introspection {
             packageName.set("src.main.graphql")
-            endpointUrl = "http://0.0.0.0:6969/graphql"
+            endpointUrl = "http://0.0.0.0:6969/graph"
         }
     }
 }

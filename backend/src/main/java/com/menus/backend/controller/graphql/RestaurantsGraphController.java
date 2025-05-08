@@ -30,6 +30,11 @@ public class RestaurantsGraphController {
     }
 
     @QueryMapping
+    public List<Restaurant> restaurantByName(@Argument String name) {
+        return restaurantService.restaurantsByName(name);
+    }
+
+    @QueryMapping
     public List<Restaurant> restaurantByLevel(@Argument int level) {
         return restaurantService.restaurantsByLevel(level);
     }
@@ -58,4 +63,17 @@ public class RestaurantsGraphController {
     public Boolean deleteRestaurant(@Argument String id) {
         return restaurantService.deleteRestaurant(id);
     }
+
+
+    @MutationMapping
+    public Boolean thumbUpRestaurant(@Argument String restaurantId) {
+        return restaurantService.thumbUpRestaurant(restaurantId) != null;
+    }
+
+    @MutationMapping
+    public Boolean thumbDownRestaurant(@Argument String restaurantId) {
+        return restaurantService.thumbDownRestaurant(restaurantId) != null;
+    }
+
+
 }

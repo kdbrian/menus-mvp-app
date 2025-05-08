@@ -1,19 +1,26 @@
-
 type Restaurant {
     id :ID!
     name : String
+    bannerImage    : String
     level : Int
     lng : Float
     lat : Float
     zipCode : String
     postalCode : String
+
+    thumbsUp : Float
+    thumbsDown : Float
 }
 
 input RestaurantInput {
     name : String
     level : Int
-    lng : Float
+    bannerImage    : String
     lat : Float
+    lng : Float
     zipCode : String
     postalCode : String
+
+    thumbsUp : Float
+    thumbsDown : Float
 }
