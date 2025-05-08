@@ -7,11 +7,17 @@ type Menu {
 
   tagLine: String
 
+  bannerImage: String
+
   workingHoursFrom: Float
 
   workingHoursTo: Float
 
   menuSections: [MenuSection]
+
+  thumbsUp: Float
+
+  thumbsDown: Float
 }
 
 input MenuInput {
@@ -21,11 +27,17 @@ input MenuInput {
 
   tagLine: String
 
+  bannerImage: String
+
   workingHoursFrom: Float
 
   workingHoursTo: Float
 
   sections: [MenuSectionInput]
+
+  thumbsUp: Float
+
+  thumbsDown: Float
 }
 
 type MenuItems {
@@ -94,6 +106,10 @@ type Mutation {
    menus
   """
   addMenu(dto: MenuInput!): Menu
+
+  thumbUpMenu(menuId: ID!): Boolean
+
+  thumbDownMenu(menuId: ID!): Boolean
 
   updateMenu(id: ID!, dto: MenuInput!): Menu
 
@@ -175,6 +191,8 @@ type Restaurant {
 
   name: String
 
+  bannerImage: String
+
   level: Int
 
   lng: Float
@@ -184,6 +202,10 @@ type Restaurant {
   zipCode: String
 
   postalCode: String
+
+  thumbsUp: Float
+
+  thumbsDown: Float
 }
 
 input RestaurantInput {
@@ -191,13 +213,45 @@ input RestaurantInput {
 
   level: Int
 
-  lng: Float
+  bannerImage: String
 
   lat: Float
+
+  lng: Float
 
   zipCode: String
 
   postalCode: String
+
+  thumbsUp: Float
+
+  thumbsDown: Float
+}
+
+type User {
+  uid: ID!
+
+  name: String
+
+  email: String
+
+  phone: String
+
+  password: String
+
+  dateJoined: Float
+
+  dateUpdated: Float
+}
+
+input UserDto {
+  name: String
+
+  email: String
+
+  phone: String
+
+  password: String
 }
 
 type __Directive {
