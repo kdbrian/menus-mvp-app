@@ -39,7 +39,7 @@ fun SignIn(
     var showPassword by remember { mutableStateOf(false) }
 
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center
     ){
 

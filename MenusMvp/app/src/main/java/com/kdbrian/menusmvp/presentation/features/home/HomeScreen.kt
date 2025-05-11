@@ -55,19 +55,24 @@ import com.kdbrian.menusmvp.R
 import com.kdbrian.menusmvp.presentation.components.GroupedItemsWithTitleAndRoundedBorder
 import com.kdbrian.menusmvp.presentation.components.StackedCardsDisplay
 import com.kdbrian.menusmvp.presentation.ui.theme.MenusMvpTheme
+import com.kdbrian.menusmvp.presentation.util.Resource
 import com.kdbrian.menusmvp.presentation.util.Shapes
+import src.main.graphql.FetchRestaurantsQuery
 
+
+
+data class HomeScreenUiState(
+    val restaurantsResource : Resource<FetchRestaurantsQuery.Data> = Resource.Loading(),
+    val searchQuery : String  = ""
+)
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalSharedTransitionApi::class)
 @Composable
 fun HomeScreen(
+    restaurantsResource : Resource<FetchRestaurantsQuery.Data> = Resource.Loading(),
     onAction: (HomeScreenAction) -> Unit = {},
 ) {
 
-    val (searchString, setSearchString) = remember { mutableStateOf("") }
-    val forYouPagerState = rememberPagerState { 300 }
-    val libraryPagerState = rememberPagerState { 300 }
-    val similarPagerState = rememberPagerState { 300 }
 
     Scaffold(
         modifier = Modifier
@@ -104,142 +109,6 @@ fun HomeScreen(
         },
     ) { paddingValues ->
         LazyColumn(contentPadding = paddingValues) {
-
-            item {
-                GroupedItemsWithTitleAndRoundedBorder(
-                    title =
-                        buildAnnotatedString {
-                            withStyle(SpanStyle()) {
-                                append("For You")
-                            }
-                        },
-                    trailingIcon = {
-                        Surface(onClick = {}, shape = Shapes.rounded24Dp, color = Color.LightGray) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(4.dp),
-                                modifier = Modifier.padding(4.dp)
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Rounded.Refresh,
-                                    contentDescription = null
-                                )
-                                Text(text = "Refresh", style = MaterialTheme.typography.labelSmall)
-                            }
-                        }
-                    },
-                    content = {
-                        Column(modifier = Modifier) {
-                            HorizontalPager(
-                                state = forYouPagerState,
-                                modifier = Modifier.fillMaxWidth()
-                            ) {
-                                Surface(
-                                    modifier = Modifier
-                                        .height(250.dp)
-                                        .padding(8.dp)
-                                        .fillMaxWidth(),
-                                    shape = Shapes.rounded12Dp,
-                                    onClick = { onAction(HomeScreenAction.RestaurantInfo(it)) }
-                                ) {
-                                    Image(
-                                        painter = painterResource(R.drawable._df01cf9_2d01_4dc5_8b0c_3cda01c69d90),
-                                        contentDescription = null,
-                                        modifier = Modifier
-                                            .fillMaxSize(),
-                                        contentScale = ContentScale.Crop
-                                    )
-                                }
-                            }
-
-                            AnimatedPagerIndicator(pagerState = forYouPagerState)
-                        }
-                    }
-                )
-            }
-
-
-            item {
-                var showLibraryItemInfo by remember { mutableStateOf(false) }
-
-                GroupedItemsWithTitleAndRoundedBorder(
-                    title =
-                        buildAnnotatedString { withStyle(SpanStyle()){
-                            append("Library")
-                        }
-                        },
-                    trailingIcon = {
-                        Surface(onClick = {}, shape = Shapes.rounded24Dp, color = Color.LightGray) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(4.dp),
-                                modifier = Modifier.padding(4.dp)
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Rounded.Refresh,
-                                    contentDescription = null
-                                )
-                                Text(text = "Refresh", style = MaterialTheme.typography.labelSmall)
-                            }
-                        }
-                    },
-                    content = {
-                        Column(modifier = Modifier) {
-                            HorizontalPager(
-                                state = libraryPagerState,
-                                modifier = Modifier.fillMaxWidth()
-                            ) {
-                                Surface(
-                                    modifier = Modifier
-                                        .height(250.dp)
-                                        .padding(8.dp)
-                                        .fillMaxWidth(),
-                                    shape = Shapes.rounded12Dp,
-                                    onClick = {}
-                                ) {
-                                    Image(
-                                        painter = painterResource(R.drawable._df01cf9_2d01_4dc5_8b0c_3cda01c69d90),
-                                        contentDescription = null,
-                                        modifier = Modifier
-                                            .fillMaxSize(),
-                                        contentScale = ContentScale.Crop
-                                    )
-                                }
-                            }
-
-                            AnimatedPagerIndicator(pagerState = libraryPagerState)
-                        }
-                    }
-                )
-            }
-
-            item {
-                GroupedItemsWithTitleAndRoundedBorder(
-                    title =  buildAnnotatedString { withStyle(SpanStyle()){
-                        append("Similar")
-                    }
-                    },
-                    trailingIcon = {
-                        Surface(onClick = {}, shape = Shapes.rounded24Dp, color = Color.LightGray) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(4.dp),
-                                modifier = Modifier.padding(4.dp)
-                            ) {
-                                Text(text = "View All", style = MaterialTheme.typography.labelSmall)
-                                Icon(
-                                    imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowRight,
-                                    contentDescription = null
-                                )
-                            }
-                        }
-                    },
-                    content = {
-                        StackedCardsDisplay()
-                    }
-                )
-            }
-
         }
     }
 

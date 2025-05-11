@@ -19,9 +19,8 @@ import src.main.graphql.FetchRestaurantByZipCodeQuery
 import src.main.graphql.FetchRestaurantsQuery
 
 class RestaurantViewModel(
-    private val restaurantRepository: RestaurantRepository
+    private val restaurantRepository: RestaurantRepository,
 ) : ViewModel() {
-
 
     private val _restaurants: MutableStateFlow<Resource<FetchRestaurantsQuery.Data>> =
         MutableStateFlow(Resource.Loading())
@@ -158,5 +157,16 @@ class RestaurantViewModel(
         }
     }
 
+    fun thumbsUpRestaurant(restaurantId: String) {
+        viewModelScope.launch {
+            restaurantRepository.thumbUpRestaurant(restaurantId)
+        }
+    }
+
+    fun thumbsDownRestaurant(restaurantId: String) {
+        viewModelScope.launch {
+            restaurantRepository.thumbDownRestaurant(restaurantId)
+        }
+    }
 
 }
