@@ -2,7 +2,9 @@ package com.kdbrian.menusmvp
 
 import android.app.Application
 import com.kdbrian.menusmvp.di.coreModule
+import com.kdbrian.menusmvp.di.homeModules
 import com.kdbrian.menusmvp.di.menuModule
+import com.kdbrian.menusmvp.di.menuSectionModule
 import com.kdbrian.menusmvp.di.restaurantModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -21,8 +23,17 @@ class MenusApp : Application() {
             androidContext(this@MenusApp)
             modules(
                 coreModule,
+                /*Menus*/
                 menuModule,
-                restaurantModule
+
+                /*Restaurants*/
+                restaurantModule,
+
+                /*Home*/
+                homeModules,
+
+                /*\Sections*/
+                menuSectionModule,
             )
         }
     }

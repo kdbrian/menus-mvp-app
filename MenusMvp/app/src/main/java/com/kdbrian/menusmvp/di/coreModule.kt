@@ -19,7 +19,7 @@ val coreModule = module {
     single<OkHttpClient> {
         OkHttpClient.Builder()
             .addInterceptor {
-                Timber.d("[${it.request().method.uppercase()}] ${it.request().url}")
+                Timber.d("[${it.request().method.uppercase()}] ${it.request().url} -> ${it.request().body}")
                 it.proceed(it.request())
             }
             .build()
@@ -36,7 +36,7 @@ val coreModule = module {
     single<ApolloClient> {
         ApolloClient.Builder()
             .okHttpClient(get())
-            .serverUrl(BuildConfig.serverUrl)
+            .serverUrl("${BuildConfig.serverUrl}${BuildConfig.graphPath}")
             .build()
     }
 

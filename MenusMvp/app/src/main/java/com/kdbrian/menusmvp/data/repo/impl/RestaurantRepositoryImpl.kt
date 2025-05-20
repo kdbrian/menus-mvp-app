@@ -1,7 +1,7 @@
 package com.kdbrian.menusmvp.data.repo.impl
 
-import com.kdbrian.menusmvp.data.remote.GraphqlServiceProvider
-import com.kdbrian.menusmvp.domain.menus.RestaurantRepository
+import com.apollographql.apollo.ApolloClient
+import com.kdbrian.menusmvp.domain.restaurants.RestaurantRepository
 import com.kdbrian.menusmvp.domain.restaurants.RestaurantLevel
 import src.main.graphql.FetchRestaurantByIdQuery
 import src.main.graphql.FetchRestaurantByLevelQuery
@@ -13,14 +13,17 @@ import src.main.graphql.ThumbDownRestaurantMutation
 import src.main.graphql.ThumbUpRestaurantMutation
 import src.main.graphql.ThumbsDownMenuMutation
 import src.main.graphql.ThumbsUpMenuMutation
+import timber.log.Timber
 
-class RestaurantRepositoryImpl : RestaurantRepository {
-
-    private val apolloClient = GraphqlServiceProvider.menusService
+class RestaurantRepositoryImpl(
+    private val apolloClient: ApolloClient
+) : RestaurantRepository {
 
     override suspend fun getAllRestaurants(): Result<FetchRestaurantsQuery.Data> {
         return apolloClient.query(FetchRestaurantsQuery()).execute().let { apolloResponse ->
+            Timber.d("${apolloResponse.errors?.isNotEmpty()}, ${apolloResponse.operation}")
             if (apolloResponse.errors?.isNotEmpty() == true) {
+                Timber.d(apolloResponse.errors.toString())
                 Result.failure(Exception(apolloResponse.exception?.message.toString()))
             } else {
                 apolloResponse.data?.let {

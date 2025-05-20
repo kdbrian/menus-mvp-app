@@ -14,6 +14,6 @@ public class EntityNotFoundError extends RuntimeException {
         super(String.format("Entity %s Not found.", itemId));
         this.itemId = itemId;
         this.callingClass = callingClass;//resolve to a class
-        log.info("calling {}", callingClass);
+        log.info("calling {}", callingClass); //log internally
     }
 }

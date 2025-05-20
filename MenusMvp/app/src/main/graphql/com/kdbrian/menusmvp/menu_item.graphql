@@ -1,0 +1,32 @@
+fragment BasicMenuItemInfo on MenuItems {
+    id
+    name
+    imageUrl
+    price
+}
+
+
+fragment DetailedMenuItemInfo on MenuItems {
+    id
+    name
+    imageUrl
+    price
+    categories
+    description
+}
+
+query GetAllMenuItems{
+    menuItems {
+        ...BasicMenuItemInfo
+        ...DetailedMenuItemInfo
+    }
+}
+
+query GetMenuItemById($id : ID!){
+    menuItemById(id: $id){
+        ...DetailedMenuItemInfo
+    }
+}
+
+
+

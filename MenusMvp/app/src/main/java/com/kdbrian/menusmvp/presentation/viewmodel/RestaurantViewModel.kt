@@ -1,9 +1,8 @@
 package com.kdbrian.menusmvp.presentation.viewmodel
 
-import androidx.compose.runtime.MutableState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kdbrian.menusmvp.domain.menus.RestaurantRepository
+import com.kdbrian.menusmvp.domain.restaurants.RestaurantRepository
 import com.kdbrian.menusmvp.domain.restaurants.level
 import com.kdbrian.menusmvp.presentation.util.Resource
 import kotlinx.coroutines.CoroutineScope

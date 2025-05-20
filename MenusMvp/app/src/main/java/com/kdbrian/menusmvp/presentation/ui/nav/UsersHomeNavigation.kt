@@ -1,10 +1,7 @@
 package com.kdbrian.menusmvp.presentation.ui.nav
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -20,6 +17,8 @@ import timber.log.Timber
 @Composable
 fun UsersHomeNavigation(
     modifier: Modifier = Modifier,
+    onScan: () -> Unit,
+    onOpenMenu: (String) -> Unit,
     navController: NavHostController,
 ) {
 
@@ -37,21 +36,21 @@ fun UsersHomeNavigation(
             HomeScreen(
                 onAction = { action ->
                     when (action) {
-                        HomeScreenAction.OpenMenus -> {
-
-                        }
-
-                        HomeScreenAction.OpenRestaurants -> {
-
-                        }
-
+                        is HomeScreenAction.OpenMenus -> Unit
+                        is HomeScreenAction.OpenRestaurants -> Unit
                         is HomeScreenAction.RestaurantInfo -> {
                             val id = action.img
                             Timber.d("id $id")
                             onOpenRestaurantInfo("$id")
                         }
 
-                        HomeScreenAction.OpenSearch ->{ navController.navigate(Second_Class_Route.Search)}
+                        is HomeScreenAction.OpenSearch -> {
+                            navController.navigate(Second_Class_Route.Search)
+                        }
+                        is HomeScreenAction.OpenScanQR -> onScan
+                        is HomeScreenAction.OpenMenu -> {
+                            onOpenMenu(action.id)
+                        }
                     }
                 }
             )
@@ -71,7 +70,7 @@ fun UsersHomeNavigation(
 
         composable<Second_Class_Route.Search> {
             SearchScreen(
-                onClose = {navController.popBackStack()}
+                onClose = { navController.popBackStack() }
             )
         }
 

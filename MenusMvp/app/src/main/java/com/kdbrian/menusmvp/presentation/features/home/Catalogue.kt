@@ -18,6 +18,8 @@ import com.kdbrian.menusmvp.presentation.ui.nav.UsersHomeNavigation
 fun Catalogue(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
+    onScan: () -> Unit,
+    onOpenMenu: (String) -> Unit,
 ) {
     val current = navController.currentBackStackEntryAsState().value?.destination
 
@@ -26,7 +28,6 @@ fun Catalogue(
         bottomBar = {
             NavigationBar {
                 BottomBarItem.items.forEach { bottomBarItem ->
-
                     NavigationBarItem(
                         selected = bottomBarItem.secondClassRoute.toString() == current?.route.toString(),
                         onClick = {
@@ -52,7 +53,9 @@ fun Catalogue(
         /*displays all other screens*/
         UsersHomeNavigation(
             navController = navController,
-            modifier = Modifier.padding(paddingValues)
+            modifier = Modifier.padding(paddingValues),
+            onScan = onScan,
+            onOpenMenu = onOpenMenu
         )
     }
 }

@@ -7,6 +7,7 @@ import com.menus.backend.domain.repo.MenuSectionRepository;
 import com.menus.backend.service.MenuItemService;
 import com.menus.backend.util.EntityDtoMapper;
 import com.menus.backend.util.ImageUrlValidator;
+import com.menus.backend.util.errors.EntityNotFoundError;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +36,7 @@ public class MenuItemServiceImpl implements MenuItemService {
         if (!ObjectId.isValid(id))
             throw new RuntimeException("Invalid ID");
 
-        return menuItemRepository.findById(id).orElseThrow(() -> new RuntimeException("Invalid Item"));
+        return menuItemRepository.findById(id).orElseThrow(() -> new EntityNotFoundError(id, MenuItem.class.getName()));
     }
 
     @Override
@@ -111,9 +112,10 @@ public class MenuItemServiceImpl implements MenuItemService {
         if (menuItemDto.getName() != null && !menuItemDto.getName().isEmpty())
             menuItem.setName(menuItemDto.getName());
 
-        if (menuItemDto.getImageUrl() != null && ImageUrlValidator.isValidImageUrl(menuItemDto.getImageUrl()))
-            menuItem.setImageUrl(menuItem.getImageUrl());
+        if (menuItemDto.getImageUrl() != null)
+            menuItem.setImageUrl(menuItemDto.getImageUrl());
 
+        menuItem.setUpdatedAt(System.currentTimeMillis());
         return menuItemRepository.save(menuItem);
     }
 

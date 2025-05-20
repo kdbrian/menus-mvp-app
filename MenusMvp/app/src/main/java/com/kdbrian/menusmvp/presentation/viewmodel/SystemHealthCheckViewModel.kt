@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.kdbrian.menusmvp.data.api.SystemCheck
 import com.kdbrian.menusmvp.presentation.util.Resource
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

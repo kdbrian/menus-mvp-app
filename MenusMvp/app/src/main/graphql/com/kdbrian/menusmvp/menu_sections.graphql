@@ -1,0 +1,37 @@
+fragment BasicMenuSectionInfo on MenuSection {
+    id
+    title
+    bannerImage
+}
+
+fragment DetailedMenuSectionInfo on MenuSection {
+    id
+    title
+    bannerImage
+    menuItems {
+        ...BasicMenuItemInfo
+    }
+}
+
+
+query GetAllMenuSections  {
+    sectionsMenu {
+        ...BasicMenuSectionInfo
+        ...DetailedMenuSectionInfo
+    }
+}
+
+query GetSectionsFromMenu ($id : ID!){
+    sectionsByMenuId(menuId: $id){
+        ...BasicMenuSectionInfo
+        ...DetailedMenuSectionInfo
+    }
+}
+
+
+query GetSectionsById ($id : ID!){
+    sectionsById(id: $id){
+        ...BasicMenuSectionInfo
+        ...DetailedMenuSectionInfo
+    }
+}

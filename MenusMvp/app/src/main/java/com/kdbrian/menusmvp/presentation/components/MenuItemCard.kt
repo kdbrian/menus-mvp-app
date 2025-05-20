@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
@@ -20,7 +21,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -31,26 +31,36 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
 import com.kdbrian.menusmvp.R
+import com.kdbrian.menusmvp.di.Constants
 import com.kdbrian.menusmvp.presentation.ui.theme.MenusMvpTheme
 import com.kdbrian.menusmvp.presentation.util.Shapes
+import src.main.graphql.fragment.BasicMenuItemInfo
 
 @Composable
-fun MenuItemCard(modifier: Modifier = Modifier) {
+fun MenuItemCard(
+    modifier: Modifier = Modifier,
+    menuItemInfo: BasicMenuItemInfo? = null,
+    onSelect: (BasicMenuItemInfo?) -> Unit = {},
+) {
 
     Card(
         modifier = modifier
-            .fillMaxWidth()
+            .width(250.dp)
             .padding(6.dp),
+        onClick = { onSelect(menuItemInfo!!) },
         shape = Shapes.rounded12Dp
     ) {
+        val imageUrl = "${Constants.baseUrl}${menuItemInfo?.imageUrl}"
 
         Box(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            Image(
-                painter = painterResource(R.drawable.rih___rocky),
+            AsyncImage(
+                model = imageUrl,
+                error = painterResource(R.drawable.rih___rocky),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -90,22 +100,11 @@ fun MenuItemCard(modifier: Modifier = Modifier) {
                                 fontSize = 20.sp
                             )
                         ) {
-                            append("Italian cuisine")
+                            append("${menuItemInfo?.name ?: ""}")
                         }
                     }
                 )
 
-                RowWithIconAndText(
-                    icon = null,
-                    spacing = 4.dp,
-                    iconTint = Color.White,
-                    textColor = Color.White,
-                    text = buildAnnotatedString {
-                        withStyle(SpanStyle()) {
-                            append("The best cuisine around Kenya")
-                        }
-                    }
-                )
 
                 RowWithIconAndText(
                     icon = R.drawable.menu,
@@ -114,37 +113,10 @@ fun MenuItemCard(modifier: Modifier = Modifier) {
                     textColor = Color.White,
                     text = buildAnnotatedString {
                         withStyle(SpanStyle()) {
-                            append("$ 30.99")
+                            append("$ ${menuItemInfo?.price ?: ""}")
                         }
                     }
                 )
-            }
-
-            // tags & categories combined
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.align(Alignment.BottomStart)
-            ) {
-
-                repeat(4) {
-                    RowWithIconAndText(
-                        modifier = Modifier
-                            .padding(4.dp)
-                            .background(
-                                shape = Shapes.rounded12Dp,
-                                color = Color.LightGray
-                            )
-                            .padding(6.dp),
-                        text = buildAnnotatedString {
-                            withStyle(SpanStyle(fontSize = 10.sp)) {
-                                append("Item $it")
-                            }
-                        },
-                        spacing = 4.dp,
-                        icon = null
-                    )
-                }
-
             }
 
             Surface(

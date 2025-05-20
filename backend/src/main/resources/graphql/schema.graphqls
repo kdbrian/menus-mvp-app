@@ -55,13 +55,13 @@ type Mutation {
     updateMenu (id : ID!,dto : MenuInput!) : Menu
 
     # menu section
-    addSectionToMenu (menuId : ID!, section : MenuSectionInput) : MenuSection
-    updateMenuSection (sectionId : ID!, menuSectionInput : MenuSectionInput) : MenuSection
+    addSectionToMenu (menuId : ID!, section : MenuSectionDto) : MenuSection
+    updateMenuSection (sectionId : ID!, menuSectionInput : MenuSectionDto) : MenuSection
     deleteMenuSection (sectionId : ID!) : Boolean
 
     # menu item
-    addMenuItemToMenuSection (sectionId : ID!, menuItemInput : MenuItemsInput) : MenuItems
-    updateMenuItem(itemId : ID!, menuItemInput : MenuItemsInput) : MenuItems
+    addMenuItemToMenuSection (sectionId : ID!, menuItemInput : MenuItemDto) : MenuItems
+    updateMenuItem(itemId : ID!, menuItemInput : MenuItemDto) : MenuItems
     deleteMenuItemFromSection (itemId : ID!) : Boolean
 
     #users

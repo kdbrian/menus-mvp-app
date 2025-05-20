@@ -7,7 +7,8 @@ type Restaurant {
     lat : Float
     zipCode : String
     postalCode : String
-
+    locationName    : String
+    tagLine    : String
     thumbsUp : Float
     thumbsDown : Float
 }
@@ -15,12 +16,10 @@ type Restaurant {
 input RestaurantInput {
     name : String
     level : Int
-    bannerImage    : String
     lat : Float
     lng : Float
     zipCode : String
     postalCode : String
-
-    thumbsUp : Float
-    thumbsDown : Float
+    locationName    : String
+    tagLine    : String
 }

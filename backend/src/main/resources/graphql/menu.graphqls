@@ -17,14 +17,11 @@ type Menu {
 input MenuInput {
     restaurant : ID!
     Name : String
+    description : String
     tagLine : String
     bannerImage : String
     workingHoursFrom : Float
     workingHoursTo : Float
-    sections : [MenuSectionInput]
-
-    thumbsUp: Float
-    thumbsDown: Float
 }
 
 
@@ -36,10 +33,10 @@ type MenuSection {
     menuItems : [MenuItems]
 }
 
-input MenuSectionInput {
+input MenuSectionDto {
     title : String
     description  : String
-    items : [MenuItemsInput]
+#    items : [MenuItemDto]
     bannerImage : String
 }
 
@@ -54,7 +51,7 @@ type MenuItems {
     imageUrl    :String
 }
 
-input MenuItemsInput {
+input MenuItemDto {
     name     :   String
     description :String
     price       :Float

@@ -1,6 +1,5 @@
-package com.kdbrian.menusmvp.domain.menus
+package com.kdbrian.menusmvp.domain.restaurants
 
-import com.kdbrian.menusmvp.domain.restaurants.RestaurantLevel
 import src.main.graphql.FetchRestaurantByIdQuery
 import src.main.graphql.FetchRestaurantByLevelQuery
 import src.main.graphql.FetchRestaurantByPostalCodeQuery
@@ -8,8 +7,6 @@ import src.main.graphql.FetchRestaurantByZipCodeQuery
 import src.main.graphql.FetchRestaurantsQuery
 import src.main.graphql.ThumbDownRestaurantMutation
 import src.main.graphql.ThumbUpRestaurantMutation
-import src.main.graphql.ThumbsDownMenuMutation
-import src.main.graphql.ThumbsUpMenuMutation
 
 interface RestaurantRepository {
     suspend fun getAllRestaurants(): Result<FetchRestaurantsQuery.Data>

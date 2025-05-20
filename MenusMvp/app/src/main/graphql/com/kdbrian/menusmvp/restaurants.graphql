@@ -1,10 +1,9 @@
 fragment RestaurantInfo on Restaurant {
     id
     name
-    level
-    postalCode
-    zipCode
     bannerImage
+    thumbsUp
+    thumbsDown
 }
 
 fragment RestaurantInfoDetailed on Restaurant {

@@ -27,6 +27,8 @@ public class Restaurant {
     private int level; // not that important
     private float lat;
     private float lng;
+    private String locationName;
+    private String tagLine;
     private String zipCode;
     private String postalCode;
     private Long createdAt;

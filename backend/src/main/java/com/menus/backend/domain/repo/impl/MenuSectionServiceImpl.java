@@ -2,6 +2,7 @@ package com.menus.backend.domain.repo.impl;
 
 import com.menus.backend.domain.dto.MenuItemDto;
 import com.menus.backend.domain.dto.MenuSectionDto;
+import com.menus.backend.domain.model.Menu;
 import com.menus.backend.domain.model.MenuItem;
 import com.menus.backend.domain.model.MenuSection;
 import com.menus.backend.domain.repo.MenuItemRepository;
@@ -10,6 +11,7 @@ import com.menus.backend.domain.repo.MenuSectionRepository;
 import com.menus.backend.service.MenuSectionService;
 import com.menus.backend.util.EntityDtoMapper;
 import com.menus.backend.util.ImageUrlValidator;
+import com.menus.backend.util.errors.EntityNotFoundError;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
@@ -35,12 +37,12 @@ public class MenuSectionServiceImpl implements MenuSectionService {
 
     @Override
     public MenuSection sectionById(String id) {
-        return menuSectionRepository.findById(id).orElseThrow(() -> new RuntimeException("Invalid Section."));
+        return menuSectionRepository.findById(id).orElseThrow(() -> new EntityNotFoundError(id, MenuSection.class.getName()));
     }
 
     @Override
     public List<MenuSection> sectionsMenuByMenu(String menuId) {
-        var menu = menuRepository.findById(menuId).orElseThrow(() -> new RuntimeException("Invalid Menu"));
+        var menu = menuRepository.findById(menuId).orElseThrow(() -> new EntityNotFoundError(menuId, Menu.class.getName()));
         return menu.getMenuSections();
     }
 
@@ -54,6 +56,7 @@ public class MenuSectionServiceImpl implements MenuSectionService {
 
         MenuSection menuSection = menuSectionRepository.save(menuSectionDtoEntityDtoMapper.fromDto(menuSectionDto));
         menu.addSection(menuSection);
+        menu.setUpdatedAt(System.currentTimeMillis());
         menuRepository.save(menu);
         return menuSection;
     }

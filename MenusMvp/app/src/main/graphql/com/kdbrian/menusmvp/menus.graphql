@@ -15,21 +15,17 @@ fragment MenuInfo on Menu{
 fragment MenuInfoDetailed on Menu{
     id
     name
-    restaurant {
-        id
-        name
-        bannerImage
-        thumbsUp
-    }
     tagLine
+    restaurant {
+        ...RestaurantInfo
+    }
     workingHoursFrom
     workingHoursTo
     bannerImage
     thumbsUp
     thumbsDown
     menuSections {
-        title
-        bannerImage
+        ...BasicMenuSectionInfo
     }
 }
 

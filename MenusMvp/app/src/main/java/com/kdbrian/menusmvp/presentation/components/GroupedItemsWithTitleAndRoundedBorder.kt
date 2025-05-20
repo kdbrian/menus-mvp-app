@@ -31,8 +31,8 @@ fun GroupedItemsWithTitleAndRoundedBorder(
     },
     trailingIcon: @Composable () -> Unit = {},
     expandAction: () -> Unit = {},
+    shape: Shape = Shapes.rounded32Dp,
     content: @Composable () -> Unit = {},
-    shape: Shape = Shapes.rounded24Dp,
 ) {
 
     Column(

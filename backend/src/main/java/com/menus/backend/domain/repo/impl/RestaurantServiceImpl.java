@@ -88,6 +88,12 @@ public class RestaurantServiceImpl implements RestaurantService {
         if (dto.getBannerImage() != null && !dto.getBannerImage().equals(restaurantToUpdate.getBannerImage()))
             restaurantToUpdate.setBannerImage(dto.getBannerImage());
 
+        if (dto.getTagLine() != null && !dto.getTagLine().equals(restaurantToUpdate.getTagLine()))
+            restaurantToUpdate.setTagLine(dto.getTagLine());
+
+        if (dto.getLocationName() != null && !dto.getLocationName().equals(restaurantToUpdate.getLocationName()))
+            restaurantToUpdate.setLocationName(dto.getLocationName());
+
         restaurantToUpdate.setUpdatedAt(System.currentTimeMillis());
 
         return restaurantRepository.save(restaurantToUpdate);

@@ -1,4 +1,4 @@
-package com.menus.backend.controller.graphql;
+package com.menus.backend.controller.rest;
 
 import com.menus.backend.domain.dto.*;
 import com.menus.backend.service.MenuItemService;
@@ -134,6 +134,7 @@ public class ImagesController {
             if (menuItemService.itemById(itemId) != null)
                 folder = "public/uploads/menuItems/";
         } else if (indexOf == 2) {
+            log.debug("sid {}",itemId);
             if (menuSectionService.sectionById(itemId) != null)
                 folder = "public/uploads/menuSections/";
         } else if (indexOf == 3) {
@@ -162,9 +163,9 @@ public class ImagesController {
         if (indexOf == 0) {
             menuService.updateMenu(itemId, MenuDto.builder().bannerImage(url).build());
         } else if (indexOf == 1) {
-            menuSectionService.updateMenuSection(itemId, MenuSectionDto.builder().bannerImage(url).build());
-        } else if (indexOf == 2) {
             menuItemService.update(itemId, MenuItemDto.builder().imageUrl(url).build());
+        } else if (indexOf == 2) {
+            menuSectionService.updateMenuSection(itemId, MenuSectionDto.builder().bannerImage(url).build());
         } else {
             restaurantService.updateRestaurant(itemId, RestaurantDto.builder().bannerImage(url).build());
         }

@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import src.main.graphql.GetAllMenusQuery
 import src.main.graphql.GetMenuByIdQuery
+import timber.log.Timber
 
 class MenusViewModel(
     private val menuRepository: MenuRepository
@@ -24,7 +25,7 @@ class MenusViewModel(
 
 
     private val _menuById: MutableStateFlow<Resource<GetMenuByIdQuery.Data>> =
-        MutableStateFlow(Resource.Nothing())
+        MutableStateFlow(Resource.Loading())
     val menuById: StateFlow<Resource<GetMenuByIdQuery.Data>>
         get() = _menuById.asStateFlow()
 
@@ -48,6 +49,7 @@ class MenusViewModel(
 
     fun getMenuById(id: String) {
         viewModelScope.launch {
+            Timber.d("id $id")
             _menuById.emit(Resource.Loading())
             CoroutineScope(Dispatchers.IO).launch {
                 _menuById.emit(

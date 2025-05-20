@@ -1,4 +1,4 @@
-package com.menus.backend.controller;
+package com.menus.backend.controller.rest;
 
 import com.menus.backend.domain.model.Menu;
 import com.menus.backend.service.MenuService;

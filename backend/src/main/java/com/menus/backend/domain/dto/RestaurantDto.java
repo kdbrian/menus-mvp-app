@@ -15,7 +15,9 @@ public class RestaurantDto {
     private int level;
     private float lat;
     private float lng;
+    private String tagLine;
     private String zipCode;
+    private String locationName;
     private String postalCode;
     private Long createdAt;
     private Long updatedAt;

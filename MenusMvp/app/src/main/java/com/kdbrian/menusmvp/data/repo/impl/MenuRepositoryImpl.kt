@@ -1,16 +1,15 @@
 package com.kdbrian.menusmvp.data.repo.impl
 
 import com.apollographql.apollo.ApolloClient
-import com.kdbrian.menusmvp.data.remote.GraphqlServiceProvider
 import com.kdbrian.menusmvp.domain.menus.MenuRepository
 import src.main.graphql.GetAllMenusQuery
 import src.main.graphql.GetMenuByIdQuery
 import src.main.graphql.ThumbsDownMenuMutation
 import src.main.graphql.ThumbsUpMenuMutation
 
-class MenuRepositoryImpl : MenuRepository {
-
-    private val apolloClient: ApolloClient = GraphqlServiceProvider.menusService
+class MenuRepositoryImpl(
+    private val apolloClient: ApolloClient
+) : MenuRepository {
 
     override suspend fun getAllMenus(): Result<GetAllMenusQuery.Data> {
         return apolloClient.query(GetAllMenusQuery()).execute().let { apolloResponse ->

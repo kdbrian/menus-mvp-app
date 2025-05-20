@@ -18,7 +18,7 @@ public class MenuSectionDtoMapper extends EntityDtoMapper<MenuSection, MenuSecti
     @Override
     public MenuSection fromDto(MenuSectionDto menuSectionDto) {
         return MenuSection.builder()
-                .title(ImageUrlValidator.isValidImageUrl(menuSectionDto.getBannerImage()) ? menuSectionDto.getTitle() : null)
+                .title(menuSectionDto.getTitle())
                 .description(menuSectionDto.getDescription())
                 .menuItems(menuSectionDto.getMenuItemDtos() == null || menuSectionDto.getMenuItemDtos().isEmpty() ? null : menuSectionDto.getMenuItemDtos().stream().map(menuItemMenuItemDtoEntityDtoMapper::fromDto).toList())
                 .bannerImage(menuSectionDto.getBannerImage() == null || !ImageUrlValidator.isValidImageUrl(menuSectionDto.getBannerImage()) ? null : menuSectionDto.getBannerImage())
